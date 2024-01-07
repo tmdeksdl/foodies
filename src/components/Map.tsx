@@ -1,21 +1,42 @@
 /* global kakao */
 import Script from 'next/script';
-
+import * as stores from '@/data/store_data.json';
 declare global {
   interface Window {
     kakao: any;
   }
 }
 
+// 강남역
+const DEFAULT_LAT = 37.498;
+const DEFAULT_LON = 127.0278;
+
 const loadKakaoMap = () => {
   // kakao 지도 로드
   window.kakao.maps.load(() => {
     const mapContainer = document.getElementById('map');
     const mapOption = {
-      center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+      center: new window.kakao.maps.LatLng(DEFAULT_LAT, DEFAULT_LON),
       level: 3,
     };
-    new window.kakao.maps.Map(mapContainer, mapOption);
+    const map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+    // 식당 데이터 마커 띄우기
+    stores?.['DATA']?.map((store) => {
+      // 마커가 표시될 위치입니다
+      var markerPosition = new window.kakao.maps.LatLng(
+        store?.y_dnts,
+        store?.x_cnts
+      );
+
+      // 마커를 생성합니다
+      var marker = new window.kakao.maps.Marker({
+        position: markerPosition,
+      });
+
+      // 마커가 지도 위에 표시되도록 설정합니다
+      marker.setMap(map);
+    });
   });
 };
 
