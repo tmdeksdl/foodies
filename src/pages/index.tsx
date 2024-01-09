@@ -1,32 +1,23 @@
 import Map from '@/components/Map';
+import Markers from '@/components/Markers';
+import StoreBox from '@/components/StoreBox';
+import { useState } from 'react';
+
+import * as stores from '@/data/store_data.json';
 export default function Home() {
+  const [map, setMap] = useState(null);
+  const [currentStore, setCurrentStore] = useState(null);
+  const storeData = stores['DATA'];
+
   return (
     <>
-      {/* <h1 className="font-bold">Map index page</h1>
-      <ul>
-        <li>
-          <Link href="/stores">맛집 목록</Link>
-        </li>
-        <li>
-          <Link href="/stores/new">맛집 생성</Link>
-        </li>
-        <li>
-          <Link href="/stores/1">맛집 상세</Link>
-        </li>
-        <li>
-          <Link href="/stores/1/edit">맛집 수정</Link>
-        </li>
-        <li>
-          <Link href="/users/login">로그인</Link>
-        </li>
-        <li>
-          <Link href="/users/mypage">마이페이지</Link>
-        </li>
-        <li>
-          <Link href="/users/likes">찜 목록</Link>
-        </li>
-      </ul> */}
-      <Map></Map>
+      <Map setMap={setMap}></Map>
+      <Markers
+        setCurrentStore={setCurrentStore}
+        map={map}
+        storeData={storeData}
+      ></Markers>
+      <StoreBox store={currentStore} setStore={setCurrentStore}></StoreBox>
     </>
   );
 }

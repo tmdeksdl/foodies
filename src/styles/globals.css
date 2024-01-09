@@ -53,3 +53,7 @@
     @apply block px-[18px] cursor-pointer;
   }
 }
+
+.infowindow {
+  @apply bg-blue-800 text-white text-center text-sm h-6 rounded-md px-2 leading-6;
+}
