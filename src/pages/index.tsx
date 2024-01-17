@@ -4,6 +4,7 @@ import StoreBox from '@/components/StoreBox';
 import { useState } from 'react';
 
 import * as stores from '@/data/store_data.json';
+import { StoreType } from '@/interface';
 export default function Home({ stores }: { stores: StoreType[] }) {
   const [map, setMap] = useState(null);
   const [currentStore, setCurrentStore] = useState(null);
