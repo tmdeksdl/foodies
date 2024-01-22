@@ -1,7 +1,7 @@
 /* global kakao */
 import Script from 'next/script';
 import { Dispatch, SetStateAction } from 'react';
-import * as stores from '@/data/store_data.json';
+
 declare global {
   interface Window {
     kakao: any;
